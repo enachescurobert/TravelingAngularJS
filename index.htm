@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <title>Beautiful places</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="scriptt.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
+<link rel="icon" href="plane.png">
+</head>
+
+<!--Test-->
+<body ng-app="myApp" background="image.jpg">
+
+
+<div class="topnav" id="myTopnav">
+  <a href="#/" >Main</a>
+  <a href="#!london">London</a>
+  <a href="#!paris">Paris</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<!-- Test-->
+<div ng-view></div>
+
+
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "main.htm",
+    })
+    .when("/london", {
+        templateUrl : "london.htm",
+        controller : "londonCtrl"
+
+    })
+    .when("/paris", {
+        templateUrl : "paris.htm",
+        controller : "parisCtrl"
+
+    });
+});
+app.controller("londonCtrl", function ($scope) {
+    $scope.msg = "I love London";
+    $scope.products = ["Big Ben", "Buckingham Palace", "Greenwich"];
+    $scope.addItem = function () {
+        $scope.products.push($scope.addMe);
+    } 
+       $scope.removeItem = function (x) {
+        $scope.products.splice(x, 1);
+    } 
+
+});
+app.controller("parisCtrl", function ($scope) {
+    $scope.msg = "I love Paris";
+});
+
+</script>
+
+</body>
+</html>
